@@ -1,2 +1,19 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>User info</h1>
+
+<%= form_for(@user, {multipart: true}) do |f| %>
+
+    <% if @user.errors.any? %>
+      <%= @user.errors.count %>errors prohibited this obj from being saved:
+      <% @user.errors.full_messages.each do |message| %>
+        <%= message %>
+       <% end %>
+     <% end %>
+
+	<%= f.label :name, "Name" %>
+	<%= f.text_field :name %>
+	<%= f.label :profile_image, "Image" %>
+	<%= f.attachment_field :profile_image %>
+	<%= f.label :introduction, "Introduction" %>
+	<%= f.text_area :introduction %>
+	<%= f.submit "Upload user" %>
+<% end %>
