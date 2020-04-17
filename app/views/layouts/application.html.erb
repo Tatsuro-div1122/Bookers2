@@ -9,17 +9,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <ul>
+    <h3>Bookers</h3>
+    <ul class="list-unstyled list-inline text-right breadcrumb">
       <% if user_signed_in? %>
-      <li><%= link_to "Home", user_path(current_user) %></li>
-      <li><%= link_to "Users", users_path %></li>
-      <li><%= link_to "Books", books_path %></li>
-      <li><%= link_to "logout", destroy_user_session_path, method: :delete%></li>
+      <li><span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", user_path(current_user) %></span></li>
+      <li><span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to "Users", users_path %></span></li>
+      <li><span class="glyphicon glyphicon-book" aria-hidden="true"><%= link_to "Books", books_path %></span></li>
+      <li><span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete%></span></li>
       <% else %>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "About", home_about_path %></li>
+      <li><span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", root_path %></span></li>
+      <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to "About", home_about_path %></span></li>
       <li><%= link_to "sign up", new_user_registration_path %></li>
-      <li><%= link_to "login", new_user_session_path %></li>
+      <li><span class="glyphicon glyphicon-log-in" aria-hidden="true"><%= link_to "login", new_user_session_path %></span></li>
       <% end %>
     </ul>
   </header>
@@ -27,6 +28,6 @@
     <%= yield %>
   </body>
   <footer>
-    <p>CopyRight Infratop.inc</p>
+    <p class="text-right">CopyRight Infratop.inc</p>
   </footer>
 </html>
