@@ -8,26 +8,37 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <h3>Bookers</h3>
-    <ul class="list-unstyled list-inline text-right breadcrumb">
-      <% if user_signed_in? %>
-      <li><span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", user_path(current_user) %></span></li>
-      <li><span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to "Users", users_path %></span></li>
-      <li><span class="glyphicon glyphicon-book" aria-hidden="true"><%= link_to "Books", books_path %></span></li>
-      <li><span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete%></span></li>
-      <% else %>
-      <li><span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", root_path %></span></li>
-      <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to "About", home_about_path %></span></li>
-      <li><%= link_to "sign up", new_user_registration_path %></li>
-      <li><span class="glyphicon glyphicon-log-in" aria-hidden="true"><%= link_to "login", new_user_session_path %></span></li>
-      <% end %>
-    </ul>
+  <header class="navbar  navbar-inverse">
+    <div class="container">
+      <nav class='nav navbar-nav navbar-left' >
+        <h3 class="text-muted">Bookers</h3>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li><span class="glyphicon glyphicon-home text-muted" aria-hidden="true"><%= link_to "Home", user_path(current_user), class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-user text-muted" aria-hidden="true"><%= link_to "Users", users_path, class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-book text-muted" aria-hidden="true"><%= link_to "Books", books_path, class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-log-out text-muted" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete, class: "text-muted"%></span></li>
+          <% else %>
+          <li><span class="glyphicon glyphicon-home text-muted" aria-hidden="true"><%= link_to "Home", root_path, class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-link text-muted" aria-hidden="true"><%= link_to "About", home_about_path, class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-edit sign_up text-muted" aria-hidden="true"><%= link_to "sign up", new_user_registration_path, class: "text-muted" %></span></li>
+          <li><span class="glyphicon glyphicon-log-in text-muted" aria-hidden="true"><%= link_to "login", new_user_session_path, class: "text-muted" %></span></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
   </header>
   <body>
     <%= yield %>
   </body>
   <footer>
-    <p class="text-right">CopyRight Infratop.inc</p>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-xs-3 col-xs-offset-9'>
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
   </footer>
 </html>
