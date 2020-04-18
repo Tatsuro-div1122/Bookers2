@@ -9,8 +9,4 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
 
-
-
-
-  
 end
