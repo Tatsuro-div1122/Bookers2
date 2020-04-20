@@ -1,4 +1,8 @@
 class BooksController < ApplicationController
+
+    before_action :authenticate_user!
+    before_action :book_not_access, only: [:edit, :update]
+
   def new
   end
 
@@ -48,6 +52,13 @@ class BooksController < ApplicationController
   private
   def book_params
   	params.require(:book).permit(:title, :body)
+  end
+
+  def book_not_access
+    book = Book.find(params[:id])
+    if current_user != book.user
+      redirect_to books_path
+    end
   end
 
 end

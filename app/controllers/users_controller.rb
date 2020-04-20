@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+    before_action :authenticate_user!
+    before_action :user_not_access, only: [:edit, :update]
+
   def top
   end
 
@@ -10,12 +14,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books.all
+    @books = @user.books
     @book = Book.new
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
@@ -33,4 +37,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+
+  def user_not_access
+    user = User.find(params[:id])
+    if current_user != user
+      redirect_to user_path(current_user)
+    end
+  end
+
 end

@@ -16,21 +16,61 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li><span class="glyphicon glyphicon-home text-muted" aria-hidden="true"><%= link_to "Home", user_path(current_user), class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-user text-muted" aria-hidden="true"><%= link_to "Users", users_path, class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-book text-muted" aria-hidden="true"><%= link_to "Books", books_path, class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-log-out text-muted" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete, class: "text-muted"%></span></li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+            <span class="glyphicon glyphicon-home text-muted" aria-hidden="true"></span>
+            Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+            <span class="glyphicon glyphicon-user text-muted" aria-hidden="true"></span>
+            Users
+            <% end %>
+          </li>
+           <li>
+            <%= link_to books_path do %>
+            <span class="glyphicon glyphicon-book text-muted" aria-hidden="true"></span>
+            Books
+            <% end %>
+           </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+              logout
+              <% end %>
+            </li>
           <% else %>
-          <li><span class="glyphicon glyphicon-home text-muted" aria-hidden="true"><%= link_to "Home", root_path, class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-link text-muted" aria-hidden="true"><%= link_to "About", home_about_path, class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-edit sign_up text-muted" aria-hidden="true"><%= link_to "sign up", new_user_registration_path, class: "text-muted" %></span></li>
-          <li><span class="glyphicon glyphicon-log-in text-muted" aria-hidden="true"><%= link_to "login", new_user_session_path, class: "text-muted" %></span></li>
+          <li>
+            <%= link_to  root_path do %>
+            <span class="glyphicon glyphicon-home text-muted" aria-hidden="true"></span>
+            Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  home_about_path do %>
+            <span class="glyphicon glyphicon-link text-muted" aria-hidden="true"></span>
+            About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+            <span class="glyphicon glyphicon-edit sign_up text-muted" aria-hidden="true"></span>
+            sign up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "login", new_user_session_path, class:"glyphicon glyphicon-log-in text-muted" %>
+          </li>
           <% end %>
         </ul>
       </nav>
     </div>
   </header>
   <body>
+      <% if flash[:notice] %>
+          <p class = "success"><%= flash[:notice] %></p>
+      <% end %>
     <%= yield %>
   </body>
   <footer>
